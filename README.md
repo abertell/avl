@@ -12,6 +12,7 @@ API:
         * __check(node,x)__: boolean function that terminates traversal when True
         * __ret(node,x)__: function called on each traversed node, returning desired information
         * __use(al,a,ar)__: function that combines information from node and both subtrees, and passes upwards
+        
       Note that the default value of al and ar are always (None,0).
       
       As an example, the following call returns the maximum of a non-empty unordered list u:
