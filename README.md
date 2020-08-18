@@ -24,6 +24,7 @@ API:
           return u.h.traverse(check, ret, use, u.h.s[0])[0]
           
 + __AVL__ class:
+    - __h__: root Node of tree (None if empty)
     - __find(elt)__: binary searches the position where elt should be inserted in the tree
     - __get(i)__: get the value stored at index i
     - __add(elt)__: add elt to the tree
