@@ -32,6 +32,6 @@ API:
     - __dpos(i)__: remove elt stored at index i
     - __disp()__: returns string containing the contents of the tree
 
-+ __Ulist__ class (inherited from AVL):
++ __Ulist__ class (extends AVL):
     - __add(elt,i)__: inserts elt before index i (or appends to end if i is unassigned)
     - __find(elt)__: returns the first index of an element equal to elt, or -1 if none exist
