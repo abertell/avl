@@ -9,40 +9,40 @@ class Node():
         return(t[0],v)if b else(v,t[1])
     
     def __set__(self,node,b):
-        self.n=self.rep(self.n,node,b)
+        self.n=self.__rep__(self.n,node,b)
         if node:
-            self.h=self.rep(self.h,max(node.h)+1,b)
-            self.s=self.rep(self.s,sum(node.s)+1,b)
+            self.h=self.__rep__(self.h,max(node.h)+1,b)
+            self.s=self.__rep__(self.s,sum(node.s)+1,b)
         else:
-            self.h=self.rep(self.h,0,b)
-            self.s=self.rep(self.s,0,b)
+            self.h=self.__rep__(self.h,0,b)
+            self.s=self.__rep__(self.s,0,b)
     
     def fix(self,node,b):
-        self.set(node,b)
+        self.__set__(node,b)
         if abs(self.h[0]-self.h[1])>1:
             z=(self.h[0]-self.h[1])>1
             c=self.n[1-z]
             if c.h[1-z]>=c.h[z]:
-                self.set(c.n[z],1-z)
-                c.set(self,z)
+                self.__set__(c.n[z],1-z)
+                c.__set__(self,z)
                 return c
             d=c.n[z]
-            c.set(d.n[1-z],z)
-            self.set(d.n[z],1-z)
-            d.set(c,1-z)
-            d.set(self,z)
+            c.__set__(d.n[1-z],z)
+            self.__set__(d.n[z],1-z)
+            d.__set__(c,1-z)
+            d.__set__(self,z)
             return d
         return self
 
-    def traverse(self,check,use,ret,x):
+    def traverse(self,check,ret,use,x):
         al,ar=((None,0),)*2
         if self.n[0]:
-            al=self.n[0].traverse(check,use,ret,x-self.n[0].s[1]-1)
+            al=self.n[0].traverse(check,ret,use,x-self.n[0].s[1]-1)
             if al[1]:return(al[0],1)
         a=ret(self,x)
         if check(self,x):return(a,1)
         if self.n[1]:
-            ar=self.n[1].traverse(check,use,ret,x+self.n[1].s[0]+1)
+            ar=self.n[1].traverse(check,ret,use,x+self.n[1].s[0]+1)
             if ar[1]:return(ar[0],1)
         return(use(al,a,ar),0)
 
@@ -50,7 +50,7 @@ class AVL():
     def __init__(self):
         self.h=None
 
-    def trace(self,p,c):
+    def __trace__(self,p,c):
         while p:
             v=p.pop()
             c=v[0].fix(c,v[1])
@@ -86,7 +86,7 @@ class AVL():
         c=r[1]
         if c:return 0
         c=Node(elt)
-        self.trace(r[0],c)
+        self.__trace__(r[0],c)
         return 1
     
     def __deln__(self,p,d):
@@ -103,7 +103,7 @@ class AVL():
         else:
             if d.n[1]:c=d.n[1]
             else:c=None
-        self.trace(p,c)
+        self.__trace__(p,c)
     
     def delt(self,elt):
         if not self.h:return 0
@@ -112,9 +112,9 @@ class AVL():
         self.__deln__(r[0],r[1])
         return 1
     
-    def dpos(self,pos):
+    def dpos(self,i):
         if not self.h:return 0
-        r=self.get(pos)
+        r=self.get(i)
         if not r:return 0
         self.__deln__(r[0],r[1])
         return 1
@@ -125,7 +125,7 @@ class AVL():
         ret=lambda n,x:str(n.elt)
         z=lambda a:a if a else''
         use=lambda al,a,ar:'['+z(al[0])+a+z(ar[0])+']'
-        return self.h.traverse(check,use,ret,self.h.s[0])[0]
+        return self.h.traverse(check,ret,use,self.h.s[0])[0]
 
 class Ulist(AVL):
     def add(self,elt,i=-1):
@@ -139,14 +139,14 @@ class Ulist(AVL):
             r=self.get(i)
             if not r:return 0
             r[0].append(r[1],0)
-        self.trace(r[0],Node(elt))
+        self.__trace__(r[0],Node(elt))
         return 1
     
     def find(self,elt):
         check=lambda n,x:n.elt==elt
         ret=lambda n,x:x
         use=lambda al,a,ar:-1
-        return self.h.traverse(check,use,ret,self.h.s[0])[0]
+        return self.h.traverse(check,ret,use,self.h.s[0])[0]
     
     def delt(self,elt):
         if not self.h:return 0
