@@ -15,7 +15,7 @@ API:
         
           Note that the default values of al and ar (for an empty subtree) are always (None,0).
       
-      As an example, the following call returns the maximum of a non-empty unordered list u:
+      As an example, the following call returns the maximum of a non-empty Ulist u:
       
           check = lambda n, x: 0
           ret = lambda n, x: n.elt
