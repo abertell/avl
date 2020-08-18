@@ -1,5 +1,5 @@
 # avl
-AVL binary search trees (without duplicates) + Unordered lists with log time insertion/removal, implementation in Python 3.
+AVL Binary search trees (without duplicates) + Unordered lists with log time insertion/removal, implementation in Python 3.
 
 API:
 + __Node__ class:
