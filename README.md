@@ -33,4 +33,3 @@ API:
 + __Ulist__ class (inherited from AVL):
     - __add(elt,i)__: inserts elt before index i (or appends to end if i is unassigned)
     - __find(elt)__: returns the first index of an element equal to elt, or -1 if none exist
-    - __delt(elt)__: same as AVL
