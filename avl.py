@@ -1,3 +1,7 @@
+#AVL Tree BSTs + Unordered Lists implementation
+#Author: Adam Bertelli (abertell@andrew.cmu.edu)
+
+#Node container for AVL Tree
 class Node():
     def __init__(self,elt):
         self.elt=elt
@@ -46,6 +50,7 @@ class Node():
             if ar[1]:return(ar[0],1)
         return(use(al,a,ar),0)
 
+#AVL trees (extendable - default BST without duplicates)
 class AVL():
     def __init__(self):
         self.h=None
@@ -127,6 +132,7 @@ class AVL():
         use=lambda al,a,ar:'['+z(al[0])+a+z(ar[0])+']'
         return self.h.traverse(check,ret,use,self.h.s[0])[0]
 
+#Unordered list implementation of AVL Tree
 class Ulist(AVL):
     def add(self,elt,i=-1):
         if not self.h:
