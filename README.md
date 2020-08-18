@@ -8,7 +8,7 @@ API:
     - __h__: tuple of left/right heights
     - __s__: tuple of left/right subtree sizes
     - __fix(node,b)__: sets the left or right node of the original node, and rebalances the tree
-    - __traverse(check,use,ret,x)__: inorder traversal of the subtree of given node (with x set to the index of the node)
+    - __traverse(check,ret,use,x)__: inorder traversal of the subtree of given node (with x set to the index of the node)
         * __check(node,x)__: boolean function that terminates traversal when True
         * __ret(node,x)__: function called on each traversed node, returning desired information
         * __use(al,a,ar)__: function that combines information from node and both subtrees, and passes upwards
