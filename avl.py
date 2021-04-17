@@ -144,7 +144,7 @@ class Ulist(AVL):
         else:
             r=self.get(i)
             if not r:return 0
-            r[0].append(r[1],0)
+            r[0].append((r[1],0))
         self.__trace__(r[0],Node(elt))
         return 1
     
